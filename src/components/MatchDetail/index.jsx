@@ -102,8 +102,8 @@ function MatchDetail() {
                 <td>{player.hero_damage}</td>
                 <td>{player.tower_damage}</td>
                 <td>{player.hero_healing}</td>
-                <td>{player.items.join(', ')}</td>
-                <td>{player.buffs.join(', ')}</td>
+                <td>{player.items && player.items.join(', ')}</td>
+                <td>{player.buffs && player.buffs.join(', ')}</td>
             </tr>
         ));
 

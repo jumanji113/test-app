@@ -65,14 +65,14 @@ function MatchList() {
                 </thead>
                 <tbody>
                     {matches.map((match) => (
-                        <tr key={match.match_id}>
-                            <td>
-                                <Link to={`/matches/${match.match_id}`}>{match.match_id}</Link>
-                            </td>
-                            <td>{match.duration} сек.</td>
-                            <td>{getTeamImages(match.teams.radiant)}</td>
-                            <td>{getTeamImages(match.teams.dire)}</td>
-                        </tr>
+                        <Link to={`/matches/${match.match_id}`}>
+                            <tr key={match.match_id}>
+                                <td>{match.match_id}</td>
+                                <td>{match.duration} сек.</td>
+                                <td>{match.teams && getTeamImages(match.teams.radiant)}</td>
+                                <td>{match.teams && getTeamImages(match.teams.dire)}</td>s
+                            </tr>
+                        </Link>
                     ))}
                 </tbody>
             </table>
