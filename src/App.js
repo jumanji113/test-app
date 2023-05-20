@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import MatchList from './components/MatchList';
+import StartPage from './components/StartPage';
+import TeamList from './components/TeamList';
+import './style/style.scss';
+import { Routes, Route } from 'react-router-dom';
+import MatchDetail from './components/MatchDetail';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                <Route path="/" element={<StartPage />} />
+                <Route path="/teams" element={<TeamList />} />
+                <Route path="/matches" element={<MatchList />} />
+                <Route path="/matches/:matchId" element={<MatchDetail />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
