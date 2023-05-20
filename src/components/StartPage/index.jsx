@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const StartPage = () => {
     return (
@@ -23,8 +24,12 @@ const StartPage = () => {
             </div>
             <input placeholder="Поиск по сайту..." type="text" />
             <div className="main-buttons">
-                <button className="main-buttons__matches">Список матчей</button>
-                <button className="main-buttons__teams">Список команд</button>
+                <Link to="/matches">
+                    <button className="main-buttons__matches">Список матчей</button>
+                </Link>
+                <Link to="/teams">
+                    <button className="main-buttons__teams">Список команд</button>
+                </Link>
             </div>
             <div className="main__description">
                 <div className="main__description-block1">
