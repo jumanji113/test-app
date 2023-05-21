@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from '../Footer';
+import Navbar from '../NavBar';
+import './teamList.scss';
 
 function TeamList() {
     const [teams, setTeams] = useState([]);
@@ -7,8 +10,13 @@ function TeamList() {
 
     useEffect(() => {
         const loadTeams = async () => {
-            const result = await axios.get('https://api.opendota.com/api/teams');
-            setTeams(result.data.slice(0, 10)); // выбираем только первые 10 команд
+            try {
+                const result = await axios.get('https://api.opendota.com/api/teams');
+                setTeams(result.data.slice(0, 10));
+            } catch (error) {
+                console.error('Error loading matches:', error);
+            }
+            // выбираем только первые 10 команд
         };
         loadTeams();
     }, []);
@@ -26,7 +34,8 @@ function TeamList() {
     };
 
     return (
-        <div>
+        <div className="team-list">
+            <Navbar />
             <h1>Список команд</h1>
             <table>
                 <thead>
@@ -51,15 +60,21 @@ function TeamList() {
                                 />
                                 {team.name}
                                 <br />
-                                <small>{`Последняя игра: ${new Date(
-                                    team.last_match_time * 1000,
-                                ).getDate()}.${
-                                    new Date(team.last_match_time * 1000).getMonth() + 1
-                                }.${new Date(team.last_match_time * 1000).getFullYear()} ${new Date(
-                                    team.last_match_time * 1000,
-                                ).getHours()}:${new Date(
-                                    team.last_match_time * 1000,
-                                ).getMinutes()}`}</small>
+                                <small>{`Последняя игра: ${
+                                    Math.round(
+                                        (Date.now() - team.last_match_time * 1000) /
+                                            (1000 * 60 * 60 * 24),
+                                    ) > 30
+                                        ? new Date(team.last_match_time * 1000).getDate() +
+                                          '.' +
+                                          (new Date(team.last_match_time * 1000).getMonth() + 1) +
+                                          '.' +
+                                          new Date(team.last_match_time * 1000).getFullYear()
+                                        : Math.round(
+                                              (Date.now() - team.last_match_time * 1000) /
+                                                  (1000 * 60 * 60 * 24),
+                                          ) + ' дней назад'
+                                }`}</small>
                             </td>
                             <td>{team.rating}</td>
                             <td>{team.wins}</td>
@@ -69,6 +84,7 @@ function TeamList() {
                 </tbody>
             </table>
             {loading ? <p>Загрузка...</p> : <button onClick={loadMore}>Загрузить еще</button>}
+            <Footer />
         </div>
     );
 }

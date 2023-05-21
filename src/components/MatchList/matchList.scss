@@ -1,0 +1,43 @@
+.MatchList {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+
+        th,
+        td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            color: #444;
+            background-color: #f8f8f8;
+        }
+    }
+
+    img {
+        margin: 3px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+    }
+
+    button {
+        margin-top: 20px;
+        background-color: #5d83a2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './matchList.scss';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
 
 function MatchList() {
     const [matches, setMatches] = useState([]);
@@ -8,9 +10,13 @@ function MatchList() {
 
     useEffect(() => {
         const loadMatches = async () => {
-            const result = await axios.get('https://api.opendota.com/api/publicMatches');
-            if (result.data) {
-                setMatches(result.data.slice(0, 10));
+            try {
+                const result = await axios.get('https://api.opendota.com/api/publicMatches');
+                if (result && result.data) {
+                    setMatches(result.data.slice(0, 10));
+                }
+            } catch (error) {
+                console.error('Error loading matches:', error);
             }
         };
         loadMatches();
@@ -18,13 +24,18 @@ function MatchList() {
 
     const loadMore = async () => {
         setLoading(true);
-        const result = await axios.get(
-            `https://api.opendota.com/api/publicMatches?offset=${matches.length}`,
-        );
-        if (result.data) {
-            setMatches([...matches, ...result.data]);
+        try {
+            const result = await axios.get(
+                `https://api.opendota.com/api/publicMatches?offset=${matches.length}`,
+            );
+            if (result && result.data) {
+                setMatches([...matches, ...result.data]);
+            }
+        } catch (error) {
+            console.error('Error loading more matches:', error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const getHeroImage = (heroId) => {
@@ -43,14 +54,6 @@ function MatchList() {
         ));
     };
 
-    // const getMatchDetails = async (matchId) => {
-    //     const result = await axios.get(`https://api.opendota.com/api/matches/${matchId}`);
-    //     if (result.data) {
-    //         console.log(result.data.radiant_team); // информация об игроках Radiant
-    //         console.log(result.data.dire_team); // информация об игроках Dire
-    //     }
-    // };
-
     return (
         <div>
             <h1>Список матчей</h1>
@@ -65,20 +68,22 @@ function MatchList() {
                 </thead>
                 <tbody>
                     {matches.map((match) => (
-                        <Link to={`/matches/${match.match_id}`}>
-                            <tr key={match.match_id}>
+                        <Link to={`/matches/${match.match_id}`} key={match.match_id}>
+                            <tr>
                                 <td>{match.match_id}</td>
-                                <td>{match.duration} сек.</td>
+                                <td>{(match.duration / 60).toFixed(2)} мин.</td>
                                 <td>{match.teams && getTeamImages(match.teams.radiant)}</td>
-                                <td>{match.teams && getTeamImages(match.teams.dire)}</td>s
+                                <td>{match.teams && getTeamImages(match.teams.dire)}</td>
                             </tr>
                         </Link>
                     ))}
                 </tbody>
             </table>
+
             {matches && matches.length >= 10 ? null : (
                 <button onClick={loadMore}>{loading ? 'Загрузка...' : 'Загрузить еще'}</button>
             )}
+            <Footer />
         </div>
     );
 }

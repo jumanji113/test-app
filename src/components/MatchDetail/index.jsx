@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Footer from '../Footer';
 
 function MatchDetail() {
     const params = useParams();
@@ -139,6 +140,7 @@ function MatchDetail() {
             {getMatchDetails()}
             {getTeamData('radiant')}
             {getTeamData('dire')}
+            <Footer />
         </div>
     );
 }

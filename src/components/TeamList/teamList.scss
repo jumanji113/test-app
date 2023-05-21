@@ -1,0 +1,90 @@
+.team-list {
+    table {
+        width: 1060px;
+        margin: 50px auto 0;
+        border-collapse: collapse;
+    }
+
+    th {
+        height: 59px;
+        background-color: #301070;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        padding-left: 40px;
+    }
+
+    tr {
+        height: 90px;
+        background-color: rgba(16, 0, 37, 0.15);
+    }
+
+    td {
+        padding-left: 40px;
+        background-color: rgba(16, 0, 37, 0.25);
+
+        &:nth-child(2) {
+            padding-left: 68px;
+            padding-right: 77px;
+
+            img {
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+
+            small {
+                font-size: 14px;
+                line-height: 17px;
+                color: #6b6b6b;
+            }
+        }
+
+        &:nth-child(3) {
+            padding-right: 245px;
+        }
+
+        &:nth-child(4) {
+            padding-right: 73px;
+        }
+
+        &:nth-child(5) {
+            padding-right: 77px;
+        }
+    }
+
+    button {
+        width: 158px;
+        height: 50px;
+        display: block;
+        margin: 50px auto;
+        padding: 10px 20px;
+        font-size: 18px;
+        line-height: 22px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 19px;
+
+        &:hover {
+            opacity: 70%;
+        }
+    }
+}
+
+.navbar {
+    margin-top: 20px;
+    margin-left: 22px;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58.09px;
+    background: linear-gradient(180deg, #ebc1ff 0%, #e0d8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
