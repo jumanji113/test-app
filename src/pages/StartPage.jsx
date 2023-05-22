@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const StartPage = () => {
     return (
-        <main className="start-page">
+        <div className="start-page">
             <div className="login">
                 <svg
                     width="16"
@@ -73,7 +73,7 @@ const StartPage = () => {
                 </div>
             </div>
             <Footer />
-        </main>
+        </div>
     );
 };
 

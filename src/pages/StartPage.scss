@@ -1,7 +1,7 @@
 .start-page {
-    background: url(../img/Background1.png) center center/cover no-repeat;
+    margin-top: 0;
     width: 1601px;
-    height: 1278px;
+    min-height: 1278px;
 
     .login {
         width: 178px;
@@ -21,6 +21,8 @@
     }
 
     .main__logo {
+        height: 104px;
+        width: 620px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -42,9 +44,15 @@
     }
 
     input {
+        width: 640px;
+        height: 61px;
+        background-color: rgba(16, 0, 37, 0.25);
+        border-bottom-left-radius: 1px;
+        border-bottom-right-radius: 1px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
         display: block;
         margin: 0 auto;
-        width: 400px;
         margin-top: 60px;
         margin-left: auto;
         margin-right: auto;
@@ -64,7 +72,10 @@
             width: 300px;
             height: 50px;
             background-color: #ffffff;
-            border: 2px solid #bbdd00;
+            border: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
@@ -78,7 +89,10 @@
             width: 300px;
             height: 50px;
             background-color: #ffffff;
-            border: 2px solid #bbdd00;
+            border: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
