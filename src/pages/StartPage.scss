@@ -1,9 +1,16 @@
 .start-page {
+    position: relative;
+    margin: 0 auto;
     margin-top: 0;
     width: 1601px;
     min-height: 1278px;
 
     .login {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
         width: 178px;
         height: 50px;
         display: flex;
