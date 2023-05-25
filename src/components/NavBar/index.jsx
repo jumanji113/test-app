@@ -34,6 +34,7 @@ function Navbar() {
             </div>
             <Link to="/">
                 <svg
+                    className="logo-navbar"
                     width="32"
                     height="32"
                     viewBox="0 0 32 32"

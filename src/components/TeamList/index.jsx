@@ -39,13 +39,15 @@ function TeamList() {
             <h1>Список команд</h1>
             <table>
                 <thead>
-                    <tr>
-                        <th>Ранг</th>
-                        <th>Название команды</th>
-                        <th>Рейтинг</th>
-                        <th>Победы</th>
-                        <th>Проигрыши</th>
-                    </tr>
+                    {
+                        <tr>
+                            <th>Ранг</th>
+                            <th>Название команды</th>
+                            <th>Рейтинг</th>
+                            <th>Победы</th>
+                            <th>Проигрыши</th>
+                        </tr>
+                    }
                 </thead>
                 <tbody>
                     {teams.map((team, index) => (

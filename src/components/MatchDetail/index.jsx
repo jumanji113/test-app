@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Footer from '../Footer';
+import NavBar from '../NavBar';
+import './matchDetail.scss';
 
 function MatchDetail() {
     const params = useParams();
@@ -31,49 +33,106 @@ function MatchDetail() {
         if (match === null) {
             return null;
         }
-
+        const durationInHours = Math.floor(match.duration / 3600);
         const durationInMinutes = Math.floor(match.duration / 60);
         const durationInSeconds = match.duration % 60;
 
+        const hoursString = durationInHours.toString().padStart(2, '0');
+        const minutesString = durationInMinutes.toString().padStart(2, '0');
+        const secondsString = durationInSeconds.toString().padStart(2, '0');
+
+        const totalTimeString = `${hoursString}:${minutesString}:${secondsString}`;
+
+        let region;
+        switch (match.region) {
+            case 0:
+                region = 'US West';
+                break;
+            case 1:
+                region = 'US East';
+                break;
+            case 2:
+                region = 'Europe West';
+                break;
+            case 3:
+                region = 'Europe East';
+                break;
+            case 5:
+                region = 'Southeast Asia';
+                break;
+            case 6:
+                region = 'Dubai';
+                break;
+            case 7:
+                region = 'Australia';
+                break;
+            case 8:
+                region = 'Russia';
+                break;
+            case 9:
+                region = 'South America';
+                break;
+            case 10:
+                region = 'South Africa';
+                break;
+            default:
+                region = 'Unknown';
+        }
+
         return (
-            <div>
-                <h1>{match && `Информация о матче ${match.match_id}`}</h1>
-                <div>Победитель: {winningSide}</div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Режим:</td>
-                            <td>{match.game_mode_name}</td>
-                        </tr>
-                        <tr>
-                            <td>Счет по убийствам:</td>
-                            <td>
-                                {match.radiant_score} - {match.dire_score}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ID матча:</td>
-                            <td>{match.match_id}</td>
-                        </tr>
-                        <tr>
-                            <td>Регион:</td>
-                            <td>{match.region_name}</td>
-                        </tr>
-                        <tr>
-                            <td>Навык:</td>
-                            <td>{match.skill_name}</td>
-                        </tr>
-                        <tr>
-                            <td>Длительность:</td>
-                            <td>
-                                {durationInMinutes} мин. {durationInSeconds} сек.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
-                    <button>Анализ</button>
-                    <button>Загрузить запись</button>
+            <div className="match-detail_title">
+                <h1>Детальная информация матча</h1>
+                <div className="match-detail_upper">
+                    <div className="match-detail_upper-left">
+                        {match.winningSide === 'Radiant' ? (
+                            <img src="/img/Winner=Radiant.png" alt="" />
+                        ) : (
+                            <img src="/img/Winner=Dire.png" alt="" />
+                        )}
+                    </div>
+                    <div className="match-detail_upper-center">
+                        <div className="match-detail_upper-center-radiant">
+                            {match.radiant_score}
+                        </div>
+                        <div className="match-detail_upper-center-mid">
+                            <div className="match-detail_mode">All draft</div>
+                            <h3>{totalTimeString}</h3>
+                            <h4>Закончился 23 часа назад</h4>
+                        </div>
+                        <div className="match-detail_upper-center-dire">{match.dire_score}</div>
+                    </div>
+                    <div className="match-detail_upper-right">
+                        <div className="match-detail_upper-right-info">
+                            <h2>ID матча</h2>
+                            <h3>{match.match_id}</h3>
+                        </div>
+                        <div className="match-detail_upper-right-info">
+                            <h2>Регион</h2>
+                            <h3>{region}</h3>
+                        </div>
+                        <div className="match-detail_upper-right-info">
+                            <h2>Навык</h2> <h3>Unknow</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="match-detail_title-warning">
+                    <img src="/img/warning.png" alt="warning-icon" />
+                    <h2>
+                        Запись этого матча не может быть проанализирована, так как недоступна вся
+                        информация о матче
+                    </h2>
+                </div>
+                <div className="match-detail_title-button">
+                    <div className="match-detail_title-button-flex">
+                        <button>
+                            <img src="/img/loadingbutton1.png" alt="loadbutton" />
+                            Анализ
+                        </button>
+                        <button>
+                            <img src="/img/loadingbutton2.png" alt="loadbutton" />
+                            Загрузить запись
+                        </button>
+                    </div>
                 </div>
             </div>
         );
@@ -88,7 +147,9 @@ function MatchDetail() {
 
         const tableRows = players.map((player, index) => (
             <tr key={index}>
-                <td>{player.name}</td>
+                <td>
+                    <img src="/img/Property 1=Default.jpg" alt="hero_logo" />
+                </td>
                 <td>{player.level}</td>
                 <td>{player.kills}</td>
                 <td>{player.deaths}</td>
@@ -110,10 +171,20 @@ function MatchDetail() {
 
         return (
             <div>
-                <h2>Статистика команды ({teamName})</h2>
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="table-tr_first">
+                            <th>{teamName}</th>
+                            <th>стастистика комманды</th>
+                            <th>
+                                {teamName === 'Radiant' && match.radiant_win ? (
+                                    <button>Победители</button>
+                                ) : (
+                                    <button>Проигравшие</button>
+                                )}
+                            </th>
+                        </tr>
+                        <tr className="table-tr_two">
                             <th>Игрок</th>
                             <th>LVL</th>
                             <th>Kills</th>
@@ -136,10 +207,13 @@ function MatchDetail() {
     };
 
     return (
-        <div>
-            {getMatchDetails()}
-            {getTeamData('radiant')}
-            {getTeamData('dire')}
+        <div className="match-detail">
+            <NavBar />
+            <div className="match-detail_content">
+                {getMatchDetails()}
+                {getTeamData('radiant')}
+                {getTeamData('dire')}
+            </div>
             <Footer />
         </div>
     );

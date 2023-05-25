@@ -1,44 +1,95 @@
-.MatchList {
+.match-list {
+    position: relative;
+    width: 1600px;
+    height: 1483px;
     margin-top: 0;
-    background-color: #fafafa;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
 
+    h1 {
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 58.09px;
+        color: #ffffff;
+        padding: 73px 50px 0 270px;
+        text-align: left;
+    }
+
+    .match-id {
+        font-size: 24px;
+        color: #bbdd00;
+        line-height: 29.05px;
+    }
     table {
-        width: 100%;
+        width: 1060px;
+        margin: 0 auto;
+        border: 2px solid #301070;
         border-collapse: collapse;
-        margin-top: 20px;
-
-        th,
-        td {
-            text-align: center;
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-        }
-
-        th {
-            color: #444;
-            background-color: #f8f8f8;
-        }
+    }
+    tr {
+        height: 90px;
+        background-color: rgba(16, 0, 37, 0.15);
+        border: 2px solid #301070;
     }
 
-    img {
-        margin: 3px;
-        border: 1px solid #ddd;
-        border-radius: 15px;
-    }
-
-    button {
-        margin-top: 20px;
-        background-color: #5d83a2;
+    th {
+        height: 59px;
+        background-color: #301070;
         color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        padding-left: 40px;
     }
+
+    thead {
+        height: 59px;
+        background-color: #301070;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        padding-left: 40px;
+    }
+    td {
+        background-color: rgba(16, 0, 37, 0.25);
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+    }
+
+    td img {
+        width: 48px;
+        height: 27px;
+        margin: 3px;
+    }
+    Footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+button {
+    width: 158px;
+    height: 50px;
+    display: block;
+    margin: 50px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    line-height: 22px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 19px;
+
+    &:hover {
+        opacity: 70%;
+    }
+}
+
+.loading-indicator {
+    font-size: 24px;
+    margin-top: 20px;
 }
