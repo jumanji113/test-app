@@ -3,6 +3,10 @@
     margin: 0 auto;
     width: 1601px;
     height: 1278px;
+    .start-page--modal-open {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 
     .start-page_auth {
         display: flex;
@@ -18,6 +22,7 @@
         align-items: center;
         margin-top: 20px;
         margin-right: 20px;
+        cursor: pointer;
 
         h2 {
             margin-left: 14px;

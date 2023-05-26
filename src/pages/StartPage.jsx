@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import './StartPage.scss';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Modal from '../components/Modal';
 
 const StartPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false); // состояние для открытия/закрытия модального окна
-    const handleAuthClick = () => {
-        setIsModalOpen(true); // открываем модальное окно при клике на блок авторизации
-    };
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false); // закрываем модальное окно при клике на крестик
+    const toggleModal = () => {
+        setIsOpen(!isOpen);
     };
 
     return (
-        <div className="start-page">
-            <div className="start-page_auth" onClick={handleAuthClick}>
+        <div className={`start-page ${isOpen ? 'start-page--modal-open' : ''}`}>
+            <div className="start-page_auth" onClick={toggleModal}>
+                {isOpen && <Modal onClose={toggleModal} />}
+
                 <div className="login">
                     <svg
                         width="16"

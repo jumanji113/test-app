@@ -63,7 +63,7 @@ function Navbar() {
             </div>
 
             {menuOpen && (
-                <div className="navbar-menu-items">
+                <div className={`navbar-menu-items ${menuOpen ? 'open' : ''}`}>
                     <ul>
                         <li>
                             <Link to="/matches">Список матчей</Link>

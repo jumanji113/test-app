@@ -55,8 +55,10 @@ function MatchList() {
                 </thead>
                 <tbody>
                     {matches.map((match) => (
-                        <tr>
-                            <td className="match-id">{match.match_id}</td>
+                        <tr className="table-tr">
+                            <NavLink className="navlink" to={`/matches/${match.match_id}`}>
+                                <td className="match-id">{match.match_id}</td>
+                            </NavLink>
                             <td>{(match.duration / 60).toFixed(2)} мин.</td>
                             <td>
                                 <img
